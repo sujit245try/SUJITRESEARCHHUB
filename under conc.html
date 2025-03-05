@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sujit Wasu Research Centre And HUB!</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            text-align: center;
+            color: #fff;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        button, input[type="submit"] {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: transform 0.3s, background 0.3s;
+        }
+        button:hover, input[type="submit"]:hover {
+            background: #e84118;
+            transform: scale(1.05);
+        }
+        #timer {
+            font-size: 24px;
+            color: #ff4757;
+            font-weight: bold;
+        }
+        .hidden { display: none; }
+        input, select {
+            margin: 10px;
+            padding: 10px;
+            width: 250px;
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #4ecdc4;
+            outline: none;
+        }
+        .flower {
+            font-size: 50px;
+            animation: spin 3s infinite linear;
+            position: absolute;
+        }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        footer {
+            font-size: 14px;
+            color: #333;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        .attraction marquee {
+            color: #ff4757;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        #progressBar {
+            width: 100%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        #progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.3s ease-in-out;
+        }
+        #home {
+            position: relative;
+            padding: 50px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(255, 107, 107, 0.7));
+            border-radius: 15px;
+            animation: pulse 2s infinite;
+        }
+        #home h1 {
+            font-size: 48px;
+            color: #ff4757;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: bounce 2s infinite;
+        }
+        #home .decor {
+            font-size: 60px;
+            position: absolute;
+            color: #4ecdc4;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        #home .decor:nth-child(1) { top: 20px; left: 30px; animation: float 3s infinite; }
+        #home .decor:nth-child(2) { top: 20px; right: 30px; animation: float 4s infinite; }
+        #home .decor:nth-child(3) { bottom: 20px; left: 30px; animation: float 5s infinite; }
+        #home .decor:nth-child(4) { bottom: 20px; right: 30px; animation: float 3.5s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-7px); } }
+        @keyframes float { 0% { transform: translateY(0); } 50% { transform: translateY(-25px); } 100% { transform: translateY(0); } }
+        @keyframes pulse { 0% { box-shadow: 0 0 10px rgba(255, 107, 107, 0.5); } 50% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.8); } 100% { box-shadow: 0 0 10px rgba(255, 107, 107, 0.5); } }
+        .emoji-celebration { margin-top: 25px; font-size: 35px; }
+        .emoji { display: inline-block; margin: 0 15px; animation: emojiFade 3s infinite; }
+        .emoji:nth-child(1) { animation-delay: 0s; }
+        .emoji:nth-child(2) { animation-delay: 0.5s; }
+        .emoji:nth-child(3) { animation-delay: 1s; }
+        @keyframes emojiFade {
+            0% { opacity: 0; transform: scale(0.5) translateY(25px); }
+            50% { opacity: 1; transform: scale(1.3) translateY(0); }
+            100% { opacity: 0; transform: scale(0.5) translateY(-25px); }
+        }
+        h2 { color: #ff4757; font-size: 32px; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); }
+        p { color: #333; font-size: 18px; }
+        #questions {
+            text-align: left;
+            color: #333;
+            padding: 10px;
+        }
+        #questions p {
+            margin: 15px 0 5px 0;
+            font-weight: bold;
+        }
+        #questions input[type="radio"] {
+            margin: 5px 10px 5px 20px;
+            vertical-align: middle;
+        }
+        #questions input[type="radio"] + label {
+            color: #333;
+            font-size: 16px;
+            display: inline;
+        }
+        #questions br {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="home">
+            <span class="decor">🌟</span>
+            <span class="decor">✨</span>
+            <span class="decor">🎉</span>
+            <span class="decor">🌈</span>
+            <h1>Sujit Wasu Research Centre And HUB!</h1>
+            <p>Date: Feb 28, 2025</p>
+            <div class="attraction"><marquee>Test Your Skills Now!</marquee><p>Unleash Your Potential!</p></div>
+            <button onclick="showForm()">Let's Dive In!</button>
+            <footer>GOLDENGATE ALUMNI: SUJIT SHAH</footer>
+        </div>
+        <div id="formPage" class="hidden">
+            <h2>Exam Form</h2>
+            <form id="examForm" onsubmit="startExam(event)">
+                <input type="text" id="name" placeholder="Your Name" required><br>
+                <input type="tel" id="contact" placeholder="Contact (10-11 digits)" pattern="[0-9]{10,11}" required><br>
+                <select id="category" onchange="updateSubcategory()" required>
+                    <option value="">Choose Your Challenge</option>
+                    <option value="physics">Physics (Class 11)</option>
+                    <option value="biology">Biology (Class 11)</option>
+                    <option value="german_b1">German B1</option>
+                    <option value="german_b2">German B2</option>
+                    <option value="rotational">Rotational Dynamics (Class 11)</option>
+                </select><br>
+                <select id="subcategory" class="hidden">
+                    <option value="">Select Set</option>
+                </select><br>
+                <input type="submit" value="Start Exam">
+            </form>
+        </div>
+        <div id="examPage" class="hidden">
+            <h2>Mock Test</h2>
+            <div id="timer">Time: 13:00</div>
+            <div id="progressBar"><div id="progress"></div></div>
+            <form id="quizForm" onsubmit="submitExam(event)">
+                <div id="questions"></div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div id="resultPage" class="hidden">
+            <h2>Your Report Card</h2>
+            <div id="result"></div>
+            <button onclick="downloadReport()">Download Report</button>
+            <p>Thanks for Participating!</p>
+            <button onclick="restart()">Try Again</button>
+        </div>
+    </div>
+
+    <script>
+        let timeLeft, timerId, selectedCategory, selectedSubcategory;
+
+        function showForm() {
+            console.log("showForm called");
+            document.getElementById('home').classList.add('hidden');
+            document.getElementById('formPage').classList.remove('hidden');
+        }
+
+        function updateSubcategory() {
+            const category = document.getElementById('category').value;
+            const subcatSelect = document.getElementById('subcategory');
+            subcatSelect.classList.add('hidden');
+            subcatSelect.innerHTML = '<option value="">Select Set</option>';
+            if (category === 'german_b1' || category === 'german_b2') {
+                subcatSelect.classList.remove('hidden');
+                subcatSelect.required = true;
+                for (let i = 1; i <= 5; i++) {
+                    subcatSelect.innerHTML += `<option value="set${i}">Set ${i}</option>`;
+                }
+            } else {
+                subcatSelect.required = false;
+            }
+        }
+
+        function startExam(e) {
+            e.preventDefault();
+            selectedCategory = document.getElementById('category').value;
+            selectedSubcategory = document.getElementById('subcategory').value || null;
+            console.log("Starting exam for:", selectedCategory, "Subcategory:", selectedSubcategory);
+            toggle('formPage', 'examPage');
+            timeLeft = selectedCategory === 'german_b2' ? 25 * 60 : 13 * 60;
+            startTimer();
+            loadQuestions();
+        }
+
+        function toggle(hide, show) {
+            document.getElementById(hide).classList.add('hidden');
+            document.getElementById(show).classList.remove('hidden');
+        }
+
+        function startTimer() {
+            clearInterval(timerId);
+            timerId = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = `Time: ${Math.floor(timeLeft/60)}:${(timeLeft%60).toString().padStart(2,'0')}`;
+                if (timeLeft <= 0) submitExam();
+            }, 1000);
+        }
+
+        function loadQuestions() {
+            const qDiv = document.getElementById('questions');
+            qDiv.innerHTML = '';
+            let qArray = (selectedCategory === 'german_b1' || selectedCategory === 'german_b2') 
+                ? questions[selectedCategory][selectedSubcategory] 
+                : questions[selectedCategory];
+            if (!qArray) {
+                console.error("No questions found for", selectedCategory, selectedSubcategory);
+                qDiv.innerHTML = "<p>Error: Questions not found!</p>";
+                return;
+            }
+            qArray.forEach((q, i) => {
+                qDiv.innerHTML += `<p>${i+1}. ${q.q}</p>
+                    <input type="radio" name="q${i}" value="a" onchange="updateProgress()"> ${q.options[0]}<br>
+                    <input type="radio" name="q${i}" value="b" onchange="updateProgress()"> ${q.options[1]}<br>
+                    <input type="radio" name="q${i}" value="c" onchange="updateProgress()"> ${q.options[2]}<br>
+                    <input type="radio" name="q${i}" value="d" onchange="updateProgress()"> ${q.options[3]}<br><br>`;
+            });
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const total = 25;
+            const answered = Array.from(document.querySelectorAll('input[type="radio"]:checked')).length;
+            const percentage = (answered / total) * 100;
+            document.getElementById('progress').style.width = `${percentage}%`;
+        }
+
+        function submitExam(e) {
+            if (e) e.preventDefault();
+            clearInterval(timerId);
+            let score = 0, correct = 0, incorrect = 0, unanswered = 0, wrong = [];
+            let qArray = (selectedCategory === 'german_b1' || selectedCategory === 'german_b2') 
+                ? questions[selectedCategory][selectedSubcategory] 
+                : questions[selectedCategory];
+            qArray.forEach((q, i) => {
+                const sel = document.querySelector(`input[name="q${i}"]:checked`);
+                if (sel) {
+                    if (sel.value === q.ans) {
+                        score++;
+                        correct++;
+                    } else {
+                        score -= 0.25;
+                        incorrect++;
+                        wrong.push({ q: q.q, sel: q.options[sel.value.charCodeAt(0)-97], corr: q.options[q.ans.charCodeAt(0)-97] });
+                    }
+                } else {
+                    unanswered++;
+                    wrong.push({ q: q.q, sel: "N/A", corr: q.options[q.ans.charCodeAt(0)-97] });
+                }
+            });
+            showResult(score, correct, incorrect, unanswered, wrong);
+        }
+
+        function showResult(score, correct, incorrect, unanswered, wrong) {
+            toggle('examPage', 'resultPage');
+            const res = document.getElementById('result');
+            res.innerHTML = `
+                <p>Score: ${score.toFixed(2)}/25</p>
+                <p>Correct Answers: ${correct}</p>
+                <p>Incorrect Answers: ${incorrect} (-${(incorrect * 0.25).toFixed(2)})</p>
+                <p>Unanswered: ${unanswered}</p>
+                <h3>Wrong Answers:</h3>` + 
+                (wrong.length ? wrong.map((w, i) => `<p>${i+1}. ${w.q}<br>Your: ${w.sel}<br>Correct: ${w.corr}</p>`).join('') : '<p>Perfect!</p>') +
+                `<div class="emoji-celebration">
+                    <span class="emoji">🎉</span>
+                    <span class="emoji">🥳</span>
+                    <span class="emoji">✨</span>
+                </div>`;
+            sessionStorage.setItem('reportData', JSON.stringify({ score, correct, incorrect, unanswered, wrong }));
+        }
+
+        function downloadReport() {
+            const data = JSON.parse(sessionStorage.getItem('reportData'));
+            if (!data) return;
+            const { score, correct, incorrect, unanswered, wrong } = data;
+            const content = `
+                Report Card\n\n
+                Score: ${score.toFixed(2)}/25\n
+                Correct Answers: ${correct}\n
+                Incorrect Answers: ${incorrect} (-${(incorrect * 0.25).toFixed(2)})\n
+                Unanswered: ${unanswered}\n\n
+                Wrong Answers:\n` + 
+                (wrong.length ? wrong.map((w, i) => `${i+1}. ${w.q}\n   Your: ${w.sel}\n   Correct: ${w.corr}\n`).join('') : 'Perfect!\n');
+            const blob = new Blob([content], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'Report_Card.txt';
+            link.click();
+        }
+
+        function restart() {
+            toggle('resultPage', 'home');
+            document.getElementById('examForm').reset();
+            document.getElementById('subcategory').classList.add('hidden');
+            sessionStorage.removeItem('reportData');
+        }
+
+        const questions = {
+            physics: [
+                { q: "What is the dimensional formula of Planck’s constant?", options: ["MLT⁻²", "M²LT⁻¹", "ML²T⁻¹", "ML²T⁻²"], ans: "c" },
+                { q: "What is the escape velocity from a planet with twice Earth’s mass and radius?", options: ["22.4 km/s", "15.8 km/s", "11.2 km/s", "7.9 km/s"], ans: "b" },
+                { q: "What is the time period of a satellite in geostationary orbit?", options: ["12 hours", "6 hours", "48 hours", "24 hours"], ans: "d" },
+                { q: "What is the relation between kinetic energy and temperature in an ideal gas?", options: ["KE ∝ T²", "KE ∝ T", "KE ∝ √T", "KE ∝ 1/T"], ans: "b" },
+                { q: "What is the de Broglie wavelength of an electron accelerated through 100V?", options: ["2.45 Å", "0.613 Å", "3.68 Å", "1.227 Å"], ans: "d" },
+                // Remaining questions follow similar randomization (not all shown for brevity)
+                { q: "What is the moment of inertia of a uniform rod about its center?", options: ["1/3 ML²", "ML²", "1/6 ML²", "1/12 ML²"], ans: "d" },
+                { q: "What is the coefficient of restitution for a perfectly inelastic collision?", options: ["0", "1", "0.5", "2"], ans: "a" },
+                { q: "What is the work done by a gas in an isochoric process?", options: ["PV", "nRT", "Zero", "ΔU"], ans: "c" },
+                // Add more as needed with shuffled options and updated ans
+            ],
+            biology: [
+                { q: "What enzyme initiates DNA replication?", options: ["Polymerase", "Helicase", "Ligase", "Topoisomerase"], ans: "b" },
+                { q: "What is the primary source of variation in meiosis?", options: ["Crossing over", "Mutation", "Mitosis", "Transcription"], ans: "a" },
+                { q: "What gas is fixed by Rhizobium in root nodules?", options: ["O₂", "N₂", "CO₂", "H₂"], ans: "b" },
+                { q: "What hormone triggers ovulation in females?", options: ["FSH", "Estrogen", "LH", "Progesterone"], ans: "c" },
+                { q: "What is the end product of glycolysis under anaerobic conditions?", options: ["Pyruvate", "Lactic acid", "Ethanol", "Acetyl-CoA"], ans: "b" },
+                // Continue with randomization
+            ],
+            rotational: [
+                { q: "What is the moment of inertia of a thin spherical shell about its diameter?", options: ["2/5 MR²", "MR²", "1/2 MR²", "2/3 MR²"], ans: "d" },
+                { q: "What is the angular acceleration if torque is doubled and moment of inertia halved?", options: ["α", "4α", "2α", "α/2"], ans: "b" },
+                { q: "What is the kinetic energy of a rolling sphere (I = 2/5 MR²)?", options: ["7/10 Mv²", "1/2 Mv²", "5/6 Mv²", "2/3 Mv²"], ans: "a" },
+                { q: "What is the angular momentum of a rotating disk with I = ½MR² and ω?", options: ["MR²ω", "¼MR²ω", "½MR²ω", "MRω"], ans: "c" },
+                // Continue with randomization
+            ],
+            german_b1: {
+                set1: [
+                    { q: "Ich ___ seit drei Jahren in Deutschland.", options: ["habe gewohnt", "war wohnen", "wohnte", "wohne"], ans: "d" },
+                    { q: "Er ___ das Buch, wenn er Zeit hätte.", options: ["liest", "würde lesen", "las", "hat gelesen"], ans: "b" },
+                    { q: "Wir ___ gestern Abend lange gearbeitet.", options: ["haben", "sind", "waren", "hatten"], ans: "a" },
+                    { q: "Sie ___ mir das Geld zurückgegeben.", options: ["war", "hatte", "ist", "hat"], ans: "d" },
+                    { q: "Das Haus ___ letztes Jahr renoviert worden.", options: ["hat", "wurde", "ist", "war"], ans: "c" },
+                    // Continue with randomization
+                ],
+                set2: [
+                    { q: "Ich ___ das Fenster geöffnet, weil es heiß war.", options: ["bin", "war", "habe", "hatte"], ans: "c" },
+                    { q: "Er ___ kommen, wenn er nicht so müde wäre.", options: ["kommt", "würde", "kam", "hatte"], ans: "b" },
+                    // Add more with shuffled options
+                ],
+                // Apply to set3, set4, set5 similarly
+            },
+            german_b2: {
+                set1: [
+                    { q: "Ich ___ die Aufgabe erledigt, bevor er zurückkam.", options: ["habe", "war", "hatte", "erledigte"], ans: "c" },
+                    { q: "Er ___ sich entspannen, wenn er mehr Zeit hätte.", options: ["entspannt", "hat entspannt", "würde", "entspannte"], ans: "c" },
+                    { q: "Wir ___ das Problem schon lange gelöst.", options: ["waren", "haben", "sind", "hatten"], ans: "b" },
+                    // Continue with randomization
+                ],
+                // Apply to set2, set3, set4, set5 similarly
+            }
+        };
+    </script>
+</body>
+</html>
